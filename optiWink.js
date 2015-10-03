@@ -139,7 +139,6 @@ optiWink = function(){
 		'y' velocity increased till they reach terminal status
 */
 	this.gravity = function(){
-		this.masses = [];
 
 		//Apply forces on all objects in masses array
 		this.applyGravity = function(){
@@ -156,7 +155,7 @@ optiWink = function(){
 
 	this.entities = [];
 /*
-				Entity Object
+					Entity Object
 		Defines a game object to be drawn into
 		the game display with standardized vals
 */
@@ -219,8 +218,7 @@ optiWink = function(){
 		self.entities.push(this);
 	};
 
-	this.boxy = new this.entity(20,50);
-	this.boxy.controlling = true;
+
 /*
 					Visual FX
 		Defines some fancy/necessary routines
@@ -252,14 +250,11 @@ optiWink = function(){
 		self.drawbG();
 		self.scanLines();
 
-		console.log(self.entities)
-
+		//Update all entities
 		for (var i = self.entities.length - 1; i >= 0; i--) {
 			e = self.entities[i];
 			e.update();
 		};
-
-
 
 	};
 
