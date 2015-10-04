@@ -140,15 +140,6 @@ optiWink = function(){
 */
 	this.gravity = function(){
 
-		//Apply forces on all objects in masses array
-		this.applyGravity = function(){
-			for (var i = this.masses.length - 1; i >= 0; i--) {
-				e = this.masses[i];
-				if (e.yVel<5){
-					e.yVel += 1;
-				}
-			};
-		}
 	}
 
 
@@ -192,7 +183,9 @@ optiWink = function(){
 
 			//Gravity
 			if (this.y<self.canvas.height-this.h){
-				this.y+=1;
+				if (this.yVel<this.tVel){
+					this.yVel += 0.01;
+				}
 			}
 		}
 
@@ -205,7 +198,14 @@ optiWink = function(){
 			}
 		}
 
+		//User modifiable update prototype
 		this.update = function(){
+
+		};
+
+		//Necessary update function
+		this.coreUpdate = function(){
+			this.update();
 			this.controls();
 			this.physics();
 			this.draw();
@@ -253,7 +253,7 @@ optiWink = function(){
 		//Update all entities
 		for (var i = self.entities.length - 1; i >= 0; i--) {
 			e = self.entities[i];
-			e.update();
+			e.coreUpdate();
 		};
 
 	};
