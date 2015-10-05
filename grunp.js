@@ -17,30 +17,31 @@ grunpGame = function(){
 
 
 		//Create main character 'boxy'
-		boxy = grunp.add.sprite(200,200,"boxy");
-		grunp.physics.enable(boxy,Phaser.Physics.ARCADE);
-		boxy.body.collideWorldBounds = true;
-		boxy.body.bounce.y = 0.2;
+		this.boxy = grunp.add.sprite(200,200,"boxy");
+		grunp.physics.enable(this.boxy,Phaser.Physics.ARCADE);
+		this.boxy.body.collideWorldBounds = true;
+		this.boxy.body.bounce.y = 0.2;
 
 
 		//Create obstacle to jump over
-		box = grunp.add.sprite(100,200,"boxy");
-		grunp.physics.enable(box,Phaser.Physics.ARCADE);
-		box.body.collideWorldBounds = true;
-		box.body.bounce.y = 0.2;
+		obstacles = grunp.add.group();
+		obstacle = obstacles.create(100,100,"boxy");
+		grunp.physics.enable(obstacles,Phaser.Physics.ARCADE);
+		//obstacles.body.collideWorldBounds = true;
+		//obstacles.body.bounce.y = 0.2;
 
 		this.controls = grunp.input.keyboard.createCursorKeys();
 	};
 
 	this.update = function(){
 		if (this.controls.left.isDown){
-			boxy.body.velocity.x = -100;
+			this.boxy.body.velocity.x = -100;
 		}
 		else if(this.controls.right.isDown){
-			boxy.body.velocity.x = 100;
+			this.boxy.body.velocity.x = 100;
 		} 
 		else if(!(this.controls.right.isDown||this.controls.left.isDown)) {
-			boxy.body.velocity.x = 0;
+			this.boxy.body.velocity.x = 0;
 		}
 
 
